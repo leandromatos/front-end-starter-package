@@ -1,0 +1,21 @@
+/**
+ * Device element visibility
+ *
+ * https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/mixins/_responsive-visibility.scss
+ */
+body {
+    &::before {
+        display: none;
+        content: 'mobile';
+    }
+    @include media($tablet) {
+        &::before {
+            content: 'tablet';
+        }
+    }
+    @include media($desktop) {
+        &::before {
+            content: 'desktop';
+        }
+    }
+}
