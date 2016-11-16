@@ -1,23 +1,15 @@
 {
-  "name": "project",
-  "description": "Project Sample",
-  "version": "0.0.1",
-  "keywords": [],
-  "main": "gulpfile.js",
-  "authors": [
-    "Leandro Matos <leandro@is-uz.com>"
-  ],
-  "license": "",
-  "moduleType": [],
-  "homepage": "",
-  "dependencies": {
-    "jquery": "~3.1.1",
-    "font-awesome": "~4.7.0",
-    "bootstrap-sass": "^3.3.7",
-    "animate.css": "^3.5.2"
-  },
-  "devDependencies": {
-    "bourbon": "~4.2.7",
-    "neat": "^1.8.0"
-  }
+    "name": "project",
+    "description": "Project Sample",
+    "version": "0.0.1",
+    "keywords": [],
+    "main": "gulpfile.js",
+    "authors": [
+        "Leandro Matos <leandro@is-uz.com>"
+    ],
+    "license": "",
+    "moduleType": [],
+    "homepage": "",
+    "dependencies": {},
+    "devDependencies": {}
 }

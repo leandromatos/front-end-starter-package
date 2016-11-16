@@ -89,8 +89,6 @@
 
     // Custom Globals
     "globals"       : {
-        "App": true,
-        "Partials": true,
-        "Utils": true
+        "Vue": true
     }
 }

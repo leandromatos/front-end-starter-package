@@ -1,13 +1,17 @@
-Partials.prototype.header = function() {
-    var self = this;
+import Resize from '../utils/resize'
+import Device from '../utils/device'
 
-    self.header.__constructor = function() {
-        self.header.resize();
+class Header {
+    constructor() {
+        const resize = new Resize()
+        resize.watch(this.resize)
+    }
 
-        Utils.resize.watch(self.header.resize);
-    };
+    resize() {
+        const device = new Device()
+        console.log('Device size:', device.size())
+        console.log('Header resize')
+    }
+}
 
-    self.header.resize = function() {};
-
-    self.header.__constructor();
-};
+export default Header

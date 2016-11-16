@@ -1,7 +1,9 @@
-Utils.prototype.device = function() {
-    this.device.__constructor = function() {
-        return window.getComputedStyle(document.querySelector('body'), '::before').getPropertyValue('content').replace(/\"/g, '').replace(/'/g, '');
-    };
+class Device {
+    constructor() {}
 
-    return this.device.__constructor();
-};
+    size() {
+        return window.getComputedStyle(document.querySelector('body'), '::before').getPropertyValue('content').replace(/\"/g, '').replace(/'/g, '')
+    }
+}
+
+export default Device

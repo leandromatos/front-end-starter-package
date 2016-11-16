@@ -1,48 +1,43 @@
-Utils.prototype.resize = function() {
-    var self = this;
-
-    self.resize.__constructor = function() {
-        self.resize.time = new Date(1, 1, 2000, 12);
-        self.resize.timeout = false;
-        self.resize.delta = 200;
-        self.resize.start.callbacks = [];
-        self.resize.watch.callbacks = [];
-        $(window).resize(function(e) {
-            self.resize.time = new Date();
-            if (self.resize.timeout === false) {
-                self.resize.timeout = true;
-                self.resize.start();
-                setTimeout(self.resize.watch, self.resize.delta);
+class Resize {
+    constructor() {
+        this.time = new Date(1, 1, 2000, 12)
+        this.timeout = false
+        this.delta = 200
+        this.callbacks = []
+        $(window).resize(e => {
+            this.time = new Date()
+            if (this.timeout === false) {
+                this.timeout = true
+                this.start()
+                setTimeout(() => {
+                    this.watch()
+                }, this.delta)
             }
-        });
-    };
+        })
+        $(window).resize()
+    }
 
-    self.resize.start = function(callback) {
-        if (callback === undefined) {
-            $('body').addClass('resize');
-            $.each(self.resize.start.callbacks, function(i, callback) {
-                callback();
-            });
-        } else {
-            self.resize.start.callbacks.push(callback);
-        }
-    };
+    start() {
+        $('body').addClass('resize')
+    }
 
-    self.resize.watch = function(callback) {
+    watch(callback) {
         if (callback === undefined) {
-            if ((new Date() - self.resize.time) < self.resize.delta) {
-                setTimeout(self.resize.watch, self.resize.delta);
+            if ((new Date() - this.time) < this.delta) {
+                setTimeout(() => {
+                    this.watch()
+                }, this.delta)
             } else {
-                $('body').removeClass('resize');
-                self.resize.timeout = false;
-                $.each(self.resize.watch.callbacks, function(i, callback) {
-                    callback();
+                $('body').removeClass('resize')
+                this.timeout = false
+                $.each(this.callbacks, (i, callback) => {
+                    callback()
                 });
             }
         } else {
-            self.resize.watch.callbacks.push(callback);
+            this.callbacks.push(callback)
         }
-    };
+    }
+}
 
-    self.resize.__constructor();
-};
+export default Resize

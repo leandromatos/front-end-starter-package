@@ -5,8 +5,8 @@ var config = {
      */
     'fonts': {
         'src': [
-            'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
-            'bower_components/font-awesome/fonts/**/*.*',
+            'node_modules/bootstrap-sass/assets/fonts/bootstrap/*.*',
+            'node_modules/font-awesome/fonts/**/*.*',
             'src/fonts/**/*.*'
         ],
         'dest': 'dist/fonts'
@@ -47,29 +47,10 @@ var config = {
         },
 
         /**
-         * Scripts > Vueify
+         * Scripts > Browserify
          */
-        'vueify': {
-            'src': 'src/scripts/vue/main.js',
-            'dest': 'dist/scripts/app.js'
-        },
-
-        /**
-         * Scripts > Build
-         */
-        'build': {
-            'src': [
-                'bower_components/jquery/dist/jquery.js',
-                'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-                'dist/scripts/app.js',
-                '!src/scripts/vue/*.js',
-                'src/scripts/utils/utils.js',
-                'src/scripts/utils/**/*.js',
-                'src/scripts/partials/partials.js',
-                'src/scripts/partials/**/*.js',
-                // 'src/scripts/**/*.js',
-                'src/scripts/app.js'
-            ],
+        'browserify': {
+            'src': 'src/scripts/app.js',
             'dest': 'dist/scripts/app.js'
         }
     },

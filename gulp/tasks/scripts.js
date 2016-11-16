@@ -3,6 +3,7 @@ var runSequence = require('run-sequence');
 var browserify = require('browserify');
 var vueify = require('vueify');
 var babelify = require('babelify');
+var aliasify = require('aliasify');
 var source = require('vinyl-source-stream');
 var jshint = require('gulp-jshint');
 var jshintStylish = require('jshint-stylish');
@@ -40,38 +41,26 @@ module.exports = function(config, args, log, error, success) {
             .pipe(plumber.stop());
     });
 
-    gulp.task('scripts:vueify', function() {
-        return browserify(config.scripts.vueify.src)
+    gulp.task('scripts:browserify', function() {
+        return browserify(config.scripts.browserify.src)
             .transform(babelify)
             .transform(vueify)
+            .transform(aliasify)
             .bundle()
             .on('error', error)
-            .pipe(source(config.scripts.vueify.dest))
+            .pipe(source(config.scripts.browserify.dest))
             .pipe(plumber({
                 errorHandler: error
             }))
             .pipe(log({
-                header: 'Components transform with browserify + vueify...'
+                header: 'Scripts transform with browserify:'
             }))
-            .pipe(gulp.dest(''))
-            .pipe(plumber.stop());
-    });
-
-    gulp.task('scripts:build', function() {
-        return gulp.src(config.scripts.build.src)
-            .pipe(plumber({
-                errorHandler: error
-            }))
-            .pipe(log({
-                header: 'Scripts build:'
-            }))
-            .pipe(concat(config.scripts.build.dest))
             .pipe(gulpIf(args.production === true, uglify()))
             .pipe(gulp.dest(''))
             .pipe(plumber.stop());
     });
 
     gulp.task('scripts', function(callback) {
-        return runSequence('scripts:formatter', 'scripts:lint', 'scripts:vueify', 'scripts:build', callback);
+        return runSequence('scripts:formatter', 'scripts:lint', 'scripts:browserify', callback);
     });
 };

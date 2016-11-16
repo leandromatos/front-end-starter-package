@@ -1,7 +1,14 @@
-Partials.prototype.content = function() {
-    var self = this;
+import Resize from '../utils/resize'
 
-    self.content.__constructor = function() {};
+class Content {
+    constructor() {
+        const resize = new Resize()
+        resize.watch(this.resize)
+    }
 
-    self.content.__constructor();
-};
+    resize() {
+        console.log('Content resize')
+    }
+}
+
+export default Content
