@@ -12,6 +12,7 @@ var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
 var gulpIf = require('gulp-if');
 var esformatter = require('gulp-esformatter');
+var buffer = require('vinyl-buffer');
 
 module.exports = function(config, args, log, error, success) {
     gulp.task('scripts:formatter', function() {
@@ -55,6 +56,7 @@ module.exports = function(config, args, log, error, success) {
             .pipe(log({
                 header: 'Scripts transform with browserify:'
             }))
+            .pipe(gulpIf(args.production === true, buffer()))
             .pipe(gulpIf(args.production === true, uglify()))
             .pipe(gulp.dest(''))
             .pipe(plumber.stop());
