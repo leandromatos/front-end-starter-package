@@ -1,11 +1,13 @@
-var gulp = require('gulp');
-var notify = require('gulp-notify');
+let gulp = require('gulp')
+let notify = require('gulp-notify')
 
-module.exports = function () {
+let NotifySuccess = () => {
     notify({
         title: 'High five',
         message: 'Default tasks completed!',
         sound: 'Glass',
         icon: null
-    }).write('./');
-};
+    }).write('./')
+}
+
+module.exports = NotifySuccess

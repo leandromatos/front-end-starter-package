@@ -1,11 +1,11 @@
-var gulp = require('gulp');
-var plumber = require('gulp-plumber');
-var log = require('../log/log.js');
-var notifyError = require('../notify/error.js');
+let gulp = require('gulp')
+let plumber = require('gulp-plumber')
+let log = require('../log/log.js')
+let notifyError = require('../notify/error.js')
 
-module.exports = function(config, args, log, error, success) {
+let Fonts = (config, args, log, error, success) => {
 
-    gulp.task('fonts', function() {
+    gulp.task('fonts', () => {
         return gulp.src(config.fonts.src)
             .pipe(plumber({
                 errorHandler: notifyError
@@ -14,7 +14,9 @@ module.exports = function(config, args, log, error, success) {
                 header: 'Copy fonts:'
             }))
             .pipe(gulp.dest(config.fonts.dest))
-            .pipe(plumber.stop());
-    });
+            .pipe(plumber.stop())
+    })
 
-};
+}
+
+module.exports = Fonts

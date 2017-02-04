@@ -1,21 +1,21 @@
-var gulp = require('gulp');
-var runSequence = require('run-sequence');
-var browserify = require('browserify');
-var vueify = require('vueify');
-var babelify = require('babelify');
-var aliasify = require('aliasify');
-var source = require('vinyl-source-stream');
-var jshint = require('gulp-jshint');
-var jshintStylish = require('jshint-stylish');
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
-var plumber = require('gulp-plumber');
-var gulpIf = require('gulp-if');
-var esformatter = require('gulp-esformatter');
-var buffer = require('vinyl-buffer');
+let gulp = require('gulp')
+let runSequence = require('run-sequence')
+let browserify = require('browserify')
+let vueify = require('vueify')
+let babelify = require('babelify')
+let aliasify = require('aliasify')
+let source = require('vinyl-source-stream')
+let jshint = require('gulp-jshint')
+let jshintStylish = require('jshint-stylish')
+let uglify = require('gulp-uglify')
+let concat = require('gulp-concat')
+let plumber = require('gulp-plumber')
+let gulpIf = require('gulp-if')
+let esformatter = require('gulp-esformatter')
+let buffer = require('vinyl-buffer')
 
-module.exports = function(config, args, log, error, success) {
-    gulp.task('scripts:formatter', function() {
+let Scripts = (config, args, log, error, success) => {
+    gulp.task('scripts:formatter', () => {
         return gulp.src(config.scripts.formatter.src)
             .pipe(plumber({
                 errorHandler: error
@@ -25,10 +25,10 @@ module.exports = function(config, args, log, error, success) {
             }))
             .pipe(esformatter())
             .pipe(gulp.dest(config.scripts.formatter.dest))
-            .pipe(plumber.stop());
-    });
+            .pipe(plumber.stop())
+    })
 
-    gulp.task('scripts:lint', function() {
+    gulp.task('scripts:lint', () => {
         return gulp.src(config.scripts.lint.src)
             .pipe(plumber({
                 errorHandler: error
@@ -39,10 +39,10 @@ module.exports = function(config, args, log, error, success) {
             .pipe(jshint())
             .pipe(jshint.reporter(jshintStylish))
             .pipe(jshint.reporter('fail'))
-            .pipe(plumber.stop());
-    });
+            .pipe(plumber.stop())
+    })
 
-    gulp.task('scripts:browserify', function() {
+    gulp.task('scripts:browserify', () => {
         return browserify(config.scripts.browserify.src)
             .transform(babelify)
             .transform(vueify)
@@ -59,10 +59,12 @@ module.exports = function(config, args, log, error, success) {
             .pipe(gulpIf(args.production === true, buffer()))
             .pipe(gulpIf(args.production === true, uglify()))
             .pipe(gulp.dest(''))
-            .pipe(plumber.stop());
-    });
+            .pipe(plumber.stop())
+    })
 
-    gulp.task('scripts', function(callback) {
-        return runSequence('scripts:formatter', 'scripts:lint', 'scripts:browserify', callback);
-    });
-};
+    gulp.task('scripts', (callback) => {
+        return runSequence('scripts:formatter', 'scripts:lint', 'scripts:browserify', callback)
+    })
+}
+
+module.exports = Scripts

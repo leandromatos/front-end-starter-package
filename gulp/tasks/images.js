@@ -1,13 +1,13 @@
-var gulp = require('gulp');
-var plumber = require('gulp-plumber');
-var gulpIf = require('gulp-if');
-var imagemin = require('gulp-imagemin');
-var log = require('../log/log.js');
-var notifyError = require('../notify/error.js');
+let gulp = require('gulp')
+let plumber = require('gulp-plumber')
+let gulpIf = require('gulp-if')
+let imagemin = require('gulp-imagemin')
+let log = require('../log/log.js')
+let notifyError = require('../notify/error.js')
 
-module.exports = function(config, args, log, error, success) {
+let Images = (config, args, log, error, success) => {
 
-    gulp.task('images', function() {
+    gulp.task('images', () => {
         return gulp.src(config.images.src)
             .pipe(plumber({
                 errorHandler: notifyError
@@ -17,7 +17,9 @@ module.exports = function(config, args, log, error, success) {
             }))
             .pipe(gulpIf(args.production === true, imagemin()))
             .pipe(gulp.dest(config.images.dest))
-            .pipe(plumber.stop());
-    });
+            .pipe(plumber.stop())
+    })
 
-};
+}
+
+module.exports = Images

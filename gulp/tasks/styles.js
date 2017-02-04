@@ -1,18 +1,17 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var scssLint = require('gulp-scss-lint');
-var scssLintStylish = require('gulp-scss-lint-stylish');
-var scssLint = require('gulp-scss-lint');
-var postCss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
-var cleanCss = require('gulp-clean-css');
-var runSequence = require('run-sequence');
-var plumber = require('gulp-plumber');
-var gulpIf = require('gulp-if');
-var concat = require('gulp-concat');
+let gulp = require('gulp')
+let sass = require('gulp-sass')
+let scssLint = require('gulp-scss-lint')
+let scssLintStylish = require('gulp-scss-lint-stylish')
+let postCss = require('gulp-postcss')
+let autoprefixer = require('autoprefixer')
+let cleanCss = require('gulp-clean-css')
+let runSequence = require('run-sequence')
+let plumber = require('gulp-plumber')
+let gulpIf = require('gulp-if')
+let concat = require('gulp-concat')
 
-module.exports = function(config, args, log, error, success) {
-    gulp.task('styles:lint', function() {
+let Styles = (config, args, log, error, success) => {
+    gulp.task('styles:lint', () => {
         return gulp.src(config.styles.lint.src)
             .pipe(plumber({
                 errorHandler: error
@@ -24,10 +23,10 @@ module.exports = function(config, args, log, error, success) {
                 customReport: scssLintStylish
             }))
             .pipe(scssLint.failReporter())
-            .pipe(plumber.stop());
-    });
+            .pipe(plumber.stop())
+    })
 
-    gulp.task('styles:process', function() {
+    gulp.task('styles:process', () => {
         return gulp.src(config.styles.process.src)
             .pipe(plumber({
                 errorHandler: error
@@ -43,10 +42,10 @@ module.exports = function(config, args, log, error, success) {
                 cascade: false
             })]))
             .pipe(gulp.dest(config.styles.process.dest))
-            .pipe(plumber.stop());
-    });
+            .pipe(plumber.stop())
+    })
 
-    gulp.task('styles:build', function() {
+    gulp.task('styles:build', () => {
         return gulp.src(config.styles.build.src)
             .pipe(plumber({
                 errorHandler: error
@@ -59,10 +58,12 @@ module.exports = function(config, args, log, error, success) {
                 keepSpecialComments: 0
             })))
             .pipe(gulp.dest(config.styles.build.dest))
-            .pipe(plumber.stop());
-    });
+            .pipe(plumber.stop())
+    })
 
-    gulp.task('styles', function(callback) {
-        runSequence('styles:lint', 'styles:process', 'styles:build', callback);
-    });
-};
+    gulp.task('styles', (callback) => {
+        runSequence('styles:lint', 'styles:process', 'styles:build', callback)
+    })
+}
+
+module.exports = Styles

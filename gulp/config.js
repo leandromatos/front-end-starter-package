@@ -1,4 +1,4 @@
-var config = {
+let Config = {
 
     /**
      * Fonts
@@ -25,13 +25,13 @@ var config = {
     /**
      * Scripts
      */
-    'scripts' : {
+    'scripts': {
 
         /**
          * Scripts > Formatter
          */
         'formatter': {
-            'src' : [
+            'src': [
                 'src/scripts/**/*.js'
             ],
             'dest': 'src/scripts'
@@ -58,13 +58,13 @@ var config = {
     /**
      * Styles
      */
-    'styles' : {
+    'styles': {
 
         /**
          * Styles > Lint
          */
         'lint': {
-            'src' : [
+            'src': [
                 'src/styles/**/*.scss'
             ]
         },
@@ -100,7 +100,16 @@ var config = {
             'src/views/index.pug'
         ],
         'dest': 'dist'
-    }
-};
+    },
 
-module.exports = config;
+    /**
+     * Clean
+     */
+    'clean': {
+        'src': [
+            './dist'
+        ],
+    }
+}
+
+module.exports = Config
