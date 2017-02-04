@@ -97,7 +97,7 @@ var config = {
     'views': {
         'data': 'src/views/data.json',
         'src': [
-            'src/views/index.jade'
+            'src/views/index.pug'
         ],
         'dest': 'dist'
     }

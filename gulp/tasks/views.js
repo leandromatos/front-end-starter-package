@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var data = require('gulp-data');
-var jade = require('gulp-jade');
+var pug = require('gulp-pug2');
 var fs = require('fs');
 var log = require('../log/log.js');
 var gulpIf = require('gulp-if');
@@ -20,9 +20,9 @@ module.exports = function(config, args, log, error, success) {
             .pipe(data(function(file) {
                 return JSON.parse(fs.readFileSync(config.views.data));
             }))
-            .pipe(gulpIf(args.production === true, jade({
+            .pipe(gulpIf(args.production === true, pug({
                 pretty: false
-            }), jade({
+            }), pug({
                 pretty: true
             })))
             .pipe(gulp.dest(config.views.dest))
