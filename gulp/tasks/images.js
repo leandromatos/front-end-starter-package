@@ -1,4 +1,4 @@
-let gulp = require('gulp')
+let gulp = require('gulp-help')(require('gulp'))
 let plumber = require('gulp-plumber')
 let gulpIf = require('gulp-if')
 let imagemin = require('gulp-imagemin')
@@ -7,7 +7,7 @@ let notifyError = require('../notify/error.js')
 
 let Images = (config, args, log, error, success) => {
 
-    gulp.task('images', () => {
+    gulp.task('images', false, () => {
         return gulp.src(config.images.src)
             .pipe(plumber({
                 errorHandler: notifyError

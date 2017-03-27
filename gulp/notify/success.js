@@ -1,11 +1,11 @@
 let gulp = require('gulp')
 let notify = require('gulp-notify')
 
-let NotifySuccess = () => {
+let NotifySuccess = (title = 'High five', message = 'All default tasks have been completed!', sound = 'Glass') => {
     notify({
-        title: 'High five',
-        message: 'Default tasks completed!',
-        sound: 'Glass',
+        title: title,
+        message: message,
+        sound: sound,
         icon: null
     }).write('./')
 }

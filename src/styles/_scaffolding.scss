@@ -1,8 +1,27 @@
+/**
+ * Body
+ */
 body {
-    @include font-feature-settings('kern', 'liga', 'pnum');
-    -webkit-font-smoothing: antialiased;
+    font-family: $base-font-family;
+    font-smoothing: antialiased !important;
+    font-feature-settings: 'kern', 'liga', 'pnum';
+    text-rendering: optimizelegibility;
+    text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
     color: $text-color;
-    font-family: $font-family-base;
-    font-size: $font-size-base;
-    line-height: $line-height-base;
+}
+
+/**
+ * Responsive Typography
+ */
+@include media($small-phone) {
+    @include typography(14px);
+}
+
+@include media($phone) {
+    @include typography(16px);
+}
+
+@include media($tablet) {
+    @include typography(16px);
 }

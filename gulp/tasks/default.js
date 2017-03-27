@@ -1,9 +1,9 @@
-let gulp = require('gulp')
+let gulp = require('gulp-help')(require('gulp'))
 let runSequence = require('run-sequence').use(gulp)
 
 let Default = (config, args, log, error, success) => {
-    gulp.task('default', (callback) => {
-        runSequence('cleaning', 'fonts', 'images', 'scripts', 'styles', 'views', success)
+    gulp.task('default', 'Run all tasks.', (callback) => {
+        runSequence('cleaning', 'fonts', 'images', 'files', 'scripts', 'styles', 'views', success)
         callback()
     })
 }

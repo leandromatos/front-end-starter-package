@@ -1,0 +1,50 @@
+/**
+ * Responsive typography
+ */
+@mixin typography($font-size) {
+    $line-height: $font-size * $base-ratio;
+    $margin: $line-height;
+
+    body {
+        font-size: $font-size;
+        line-height: ($font-size * $base-ratio);
+    }
+
+    h1 {
+        font-size: ((($font-size * $base-ratio) * $base-ratio) * $base-ratio);
+        line-height: ($font-size * $base-ratio) * 3;
+        margin-top: $margin * 2;
+        margin-bottom: $margin;
+    }
+
+    h2 {
+        font-size: (($font-size * $base-ratio) * $base-ratio);
+        line-height: ($font-size * $base-ratio) * 2;
+        margin-top: $margin;
+        margin-bottom: $margin;
+    }
+
+    h3 {
+        font-size: $font-size * $base-ratio;
+        line-height: ($font-size * $base-ratio);
+        margin-top: $margin;
+        margin-bottom: $margin;
+    }
+
+    h4 {
+        font-size: $font-size;
+        line-height: ($font-size * $base-ratio);
+        margin-top: $margin;
+        margin-bottom: $margin;
+    }
+
+    p,
+    ul,
+    ol,
+    pre,
+    table,
+    blockquote {
+        margin-top: $margin;
+        margin-bottom: $margin;
+    }
+}

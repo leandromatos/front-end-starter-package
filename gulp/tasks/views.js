@@ -1,16 +1,19 @@
-let gulp = require('gulp')
-let plumber = require('gulp-plumber')
+let gulp = require('gulp-help')(require('gulp'))
 let data = require('gulp-data')
-let pug = require('gulp-pug2')
 let fs = require('fs')
-let log = require('../log/log.js')
 let gulpIf = require('gulp-if')
+let inlineCss = require('gulp-inline-css')
+let inlineSource = require('gulp-inline-source')
+let log = require('../log/log.js')
 let notifyError = require('../notify/error.js')
+let plumber = require('gulp-plumber')
+let pug = require('gulp-pug2')
+let runSequence = require('run-sequence')
+let htmlBeautify = require('gulp-html-beautify')
 
 let Views = (config, args, log, error, success) => {
-
-    gulp.task('views', () => {
-        return gulp.src(config.views.src)
+    gulp.task('views:process', false, () => {
+        return gulp.src(config.views.process.src)
             .pipe(plumber({
                 errorHandler: notifyError
             }))
@@ -18,15 +21,27 @@ let Views = (config, args, log, error, success) => {
                 header: 'Compile views:'
             }))
             .pipe(data((file) => {
-                return JSON.parse(fs.readFileSync(config.views.data))
+                return JSON.parse(fs.readFileSync(config.views.process.data))
             }))
             .pipe(gulpIf(args.production === true, pug({
                 pretty: false
-            }), pug({
+            })))
+            .pipe(gulpIf(args.production !== true, pug({
                 pretty: true
             })))
-            .pipe(gulp.dest(config.views.dest))
+            .pipe(gulp.dest(config.views.process.dest))
             .pipe(plumber.stop())
+    })
+
+    gulp.task('views:build', false, () => {
+        return gulp.src(config.views.build.src)
+            .pipe(inlineSource())
+            .pipe(gulpIf(args.production === false, htmlBeautify()))
+            .pipe(gulp.dest(config.views.process.dest))
+    })
+
+    gulp.task('views', false, (callback) => {
+        runSequence('views:process', 'views:build', callback)
     })
 
 }

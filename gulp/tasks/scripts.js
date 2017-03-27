@@ -1,4 +1,4 @@
-let gulp = require('gulp')
+let gulp = require('gulp-help')(require('gulp'))
 let runSequence = require('run-sequence')
 let browserify = require('browserify')
 let vueify = require('vueify')
@@ -13,9 +13,10 @@ let plumber = require('gulp-plumber')
 let gulpIf = require('gulp-if')
 let esformatter = require('gulp-esformatter')
 let buffer = require('vinyl-buffer')
+let envify = require('envify/custom')
 
-let Scripts = (config, args, log, error, success) => {
-    gulp.task('scripts:formatter', () => {
+module.exports = function(config, args, log, error, success) {
+    gulp.task('scripts:formatter', false, () => {
         return gulp.src(config.scripts.formatter.src)
             .pipe(plumber({
                 errorHandler: error
@@ -28,7 +29,7 @@ let Scripts = (config, args, log, error, success) => {
             .pipe(plumber.stop())
     })
 
-    gulp.task('scripts:lint', () => {
+    gulp.task('scripts:lint', false, () => {
         return gulp.src(config.scripts.lint.src)
             .pipe(plumber({
                 errorHandler: error
@@ -42,11 +43,15 @@ let Scripts = (config, args, log, error, success) => {
             .pipe(plumber.stop())
     })
 
-    gulp.task('scripts:browserify', () => {
+    gulp.task('scripts:browserify', false, () => {
         return browserify(config.scripts.browserify.src)
             .transform(babelify)
             .transform(vueify)
             .transform(aliasify)
+            .transform(envify({
+                _: 'purge',
+                NODE_ENV: process.env.NODE_ENV
+            }))
             .bundle()
             .on('error', error)
             .pipe(source(config.scripts.browserify.dest))
@@ -62,9 +67,7 @@ let Scripts = (config, args, log, error, success) => {
             .pipe(plumber.stop())
     })
 
-    gulp.task('scripts', (callback) => {
+    gulp.task('scripts', false, (callback) => {
         return runSequence('scripts:formatter', 'scripts:lint', 'scripts:browserify', callback)
     })
 }
-
-module.exports = Scripts

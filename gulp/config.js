@@ -23,6 +23,16 @@ let Config = {
     },
 
     /**
+     * Files
+     */
+    'files': {
+        'src': [
+            'src/files/**/*.*',
+        ],
+        'dest': 'dist/files'
+    },
+
+    /**
      * Scripts
      */
     'scripts': {
@@ -95,11 +105,27 @@ let Config = {
      * Views
      */
     'views': {
-        'data': 'src/views/data.json',
-        'src': [
-            'src/views/index.pug'
-        ],
-        'dest': 'dist'
+
+        /**
+         * Views > Process
+         */
+        'process': {
+            'data': 'src/views/data.json',
+            'src': [
+                'src/views/*.pug'
+            ],
+            'dest': 'dist'
+        },
+
+        /**
+         * Views > Build
+         */
+        'build': {
+            'src': [
+                'dist/*.html'
+            ],
+            'dest': 'dist'
+        }
     },
 
     /**

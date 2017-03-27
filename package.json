@@ -9,7 +9,8 @@
   ],
   "license": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "NODE_ENV=production gulp --production",
+    "dev": "gulp watch"
   },
   "private": true,
   "devDependencies": {
@@ -26,6 +27,7 @@
     "bourbon-neat": "^2.0.0",
     "browserify": "^14.1.0",
     "del": "^2.2.2",
+    "envify": "^4.0.0",
     "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
     "glob": "^7.1.1",
@@ -35,8 +37,12 @@
     "gulp-concat": "^2.6.1",
     "gulp-data": "^1.2.1",
     "gulp-esformatter": "^6.1.0",
+    "gulp-help": "^1.6.1",
+    "gulp-html-beautify": "^1.0.1",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
+    "gulp-inline-css": "^3.1.0",
+    "gulp-inline-source": "^3.0.0",
     "gulp-jshint": "^2.0.4",
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
@@ -69,7 +75,8 @@
   "dependencies": {},
   "aliasify": {
     "aliases": {
-      "vue": "vue/dist/vue.js"
+      "vue": "vue/dist/vue.js",
+      "vue-min": "vue/dist/vue.min.js"
     }
   }
 }

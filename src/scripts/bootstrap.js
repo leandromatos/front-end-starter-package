@@ -15,5 +15,5 @@ require('bootstrap-sass');
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = require('vue');
+window.Vue = process.env.NODE_ENV === 'production' ? require('vue-min') : require('vue')
 require('vue-resource');

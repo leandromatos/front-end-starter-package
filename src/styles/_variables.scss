@@ -3,137 +3,100 @@
  * White, gray, black and brand colors for use across Bootstrap.
  */
 
-$white-base               : #e6e7e9 !default;
-$white-darker             : #c7c8ca !default;
-$white-dark               : #d5d6d8 !default;
-$white                    : #ffffff !default;
-$white-light              : #f2f3f5 !default;
-$white-lighter            : #f7f8fa !default;
+$inch-worm             : #bdff67; // Primary
+$conifer               : #9cd255; // Primary
+$atlantis              : #97cc52; // Primary
 
-$black-base               : #272727 !default;
-$black-darker             : #373737 !default;
-$black-dark               : #5a5a5a !default;
-$black                    : #000000 !default;
-$black-light              : #878787 !default;
-$black-lighter            : #979797 !default;
+$black                 : #000000 !default; // Basic
+$gray-chateau          : #a5a5a5;  // Basic
+$pumice                : #c6c6c6; // Basic
+$platinum              : #e3e3e3; // Basic
+$lily-white            : #ebebeb; // Basic
+$white-smoke           : #f5f5f5; // Basic
+$white                 : #ffffff !default; // Basic
 
-$gray-base                : #5f6062 !default; // #000000
-$gray-darker              : #95979b !default; // lighten($gray-base, 13.5%) !default; // #222
-$gray-dark                : #adafb3 !default; // lighten($gray-base, 20%) !default; // #333
-$gray                     : #c1c3c8 !default; // lighten($gray-base, 33.5%) !default; // #555
-$gray-light               : #ced0d5 !default; // lighten($gray-base, 46.7%) !default; // #777
-$gray-lighter             : #e3e6eb !default; // lighten($gray-base, 93.5%) !default; // #eee
+/**
+ * Bootstrap colors
+ */
+$brand-primary         : $inch-worm !default;
+$brand-primary-dark    : $conifer !default;
+$brand-primary-darker  : $atlantis !default;
 
-$brand-primary            : #00ffc6 !default;
-$brand-primary-dark       : #00eeb9 !default;
-$brand-primary-darker     : #00d9a8 !default;
+$gray-darker           : $gray-chateau !default;
+$gray-dark             : $pumice !default;
+$gray                  : $platinum !default;
+$gray-light            : $lily-white !default;
+$gray-lighter          : $white-smoke !default;
 
 /**
  * Fonts
  */
-$font-path                : '../fonts';
-$icon-font-path           : $font-path;
+$font-path             : '../fonts';
+$icon-font-path        : $font-path; // For Bootstrap
 
 /**
  * Images
  */
-$image-path               : '../images';
+$image-path            : '../images';
 
 /**
  * Media queries breakpoint
  */
- // Extra small screen / phone
-$screen-xs                : 480px !default;
-$screen-xs-min            : $screen-xs !default;
-$screen-phone             : $screen-xs-min !default;
+// Extra Extra small screen / phone (iPhone 5 > iPhone 6 / iPhone 7)
+$screen-xxs            : 320px !default;
+$screen-xxs-min        : $screen-xxs !default;
+$screen-xxs-phone      : $screen-xxs-min !default;
+
+// Extra small screen / phone (iPhone 6 Plus / 7 Plus)
+$screen-xs             : 414px !default; // 480px
+$screen-xs-min         : $screen-xs !default;
+$screen-phone          : $screen-xs-min !default;
 
  // Small screen / tablet
-$screen-sm                : 768px !default;
-$screen-sm-min            : $screen-sm !default;
-$screen-tablet            : $screen-sm-min !default;
+$screen-sm             : 768px !default;
+$screen-sm-min         : $screen-sm !default;
+$screen-tablet         : $screen-sm-min !default;
 
  // Medium screen / desktop
-$screen-md                : 992px !default;
-$screen-md-min            : $screen-md !default;
-$screen-desktop           : $screen-md-min !default;
+$screen-md             : 992px !default;
+$screen-md-min         : $screen-md !default;
+$screen-desktop        : $screen-md-min !default;
 
  // Large screen / wide desktop
-$screen-lg                : 1200px !default;
-$screen-lg-min            : $screen-lg !default;
-$screen-lg-desktop        : $screen-lg-min !default;
+$screen-lg             : 1200px !default;
+$screen-lg-min         : $screen-lg !default;
+$screen-lg-desktop     : $screen-lg-min !default;
 
  // So media queries don't overlap when required, provide a maximum
-$screen-xs-max            : ($screen-sm-min - 1) !default;
-$screen-sm-max            : ($screen-md-min - 1) !default;
-$screen-md-max            : ($screen-lg-min - 1) !default;
+$screen-xxs-max        : ($screen-xs-min - 1) !default;
+$screen-xs-max         : ($screen-sm-min - 1) !default;
+$screen-sm-max         : ($screen-md-min - 1) !default;
+$screen-md-max         : ($screen-lg-min - 1) !default;
 
 /**
  * Grid
  */
-$grid-gutter-width        : 20px !default;
-$tablet                   : $screen-sm-min;
-$desktop                  : $screen-md-min;
-$desktop-wide             : $screen-lg-min;
+$grid-gutter-width     : 20px !default;
+$small-phone           : $screen-xxs-min;
+$phone                 : $screen-xs-min;
+$tablet                : $screen-sm-min;
+$desktop               : $screen-md-min;
+$wide-desktop          : $screen-lg-min;
 
 /**
  * Scaffolding
  * Settings for some of the most global styles.
  */
-$body-bg                  : $white-base !default; // Background color for body.
-$text-color               : $gray-base !default;      // Global text color on body.
-$link-color               : #02ab76 !default;         // Global textual link color.
-$link-hover-color         : $link-color;              // Link hover color.
-$link-hover-decoration    : underline !default;       // Link hover decoration.
-$base-spacing             : 20px;
-$base-small-spacing       : $base-spacing / 2;
-$font-family-base         : 'Open Sans';
-$font-size-base           : 18px !default; //14px !default;
-$line-height-base         : 1.5 !default; // 1.428571429 !default; // 20/14
-// Computed line-height (font-size * line-height) for use with margin, padding, etc.
-$line-height-computed     : floor(($font-size-base * $line-height-base)) !default; // ~20px
-
-/**
- * Buttons
- * For each of Bootstrap's buttons, define text, background and border color.
- */
-$btn-font-weight          : normal !default;
-$btn-default-color        : $white !default;
-$btn-default-bg           : $gray-dark !default;
-$btn-default-bg-hover     : $gray-darker !default;
-$btn-default-bg-active    : $gray-darker !default;
-$btn-primary-bg           : $brand-primary !default;
-$btn-primary-bg-hover     : $brand-primary-dark !default;
-$btn-primary-bg-active    : $brand-primary-darker !default;
-$btn-border-radius-base   : 3px !default;
-$btn-border-radius-large  : 4px !default;
-$btn-border-radius-small  : 2px !default;
-
-//== Components
-//
-//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
-
-$padding-base-vertical    : 6px !default;
-$padding-base-horizontal  : 12px !default;
-
-$padding-large-vertical   : 10px !default;
-$padding-large-horizontal : 16px !default;
-
-$padding-small-vertical   : 5px !default;
-$padding-small-horizontal : 10px !default;
-
-$padding-xs-vertical      : 1px !default;
-$padding-xs-horizontal    : 5px !default;
-
-$line-height-large        : 1.3333333 !default; // extra decimals for Win 8.1 Chrome
-$line-height-small        : 1.5 !default;
-
-$border-radius-base       : 4px !default;
-$border-radius-large      : 6px !default;
-$border-radius-small      : 3px !default;
-
-
-$component-active-color   : $white !default; // Global color for active items (e.g., navs or dropdowns).
-$component-active-bg      : $brand-primary !default; // Global background color for active items (e.g., navs or dropdowns).
-$caret-width-base         : 4px !default; // Width of the `border` for generating carets that indicator dropdowns.
-$caret-width-large        : 5px !default; // Carets increase slightly in size for larger components.
-
+$body-bg               : $white !default; // Background color for body.
+$text-color            : $black !default; // Global text color on body.
+$link-color            : $brand-primary !default; // Global textual link color.
+$link-hover-color      : $link-color; // Link hover color
+$link-hover-decoration : underline !default; // Link hover decoration.
+$base-ratio            : 1.618; // Golden Ratio
+$base-spacing          : 20px;
+$base-border-radius    : 4px;
+$base-font-family      : 'Open Sans', Helvetica, Arial, sans-serif;
+$base-font-size        : 16px !default; // 16px = 1em
+$base-font-size-small  : 14px;
+$computed-spacing      : $base-font-size * $base-ratio;
+$line-height-computed  : floor($computed-spacing) !default; // Computed line-height for use with margin, padding, etc
