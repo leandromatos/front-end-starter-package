@@ -7,7 +7,7 @@ let inlineSource = require('gulp-inline-source')
 let log = require('../log/log.js')
 let notifyError = require('../notify/error.js')
 let plumber = require('gulp-plumber')
-let pug = require('gulp-pug2')
+let pug = require('gulp-pug')
 let runSequence = require('run-sequence')
 let htmlBeautify = require('gulp-html-beautify')
 
@@ -23,12 +23,9 @@ let Views = (config, args, log, error, success) => {
             .pipe(data((file) => {
                 return JSON.parse(fs.readFileSync(config.views.process.data))
             }))
-            .pipe(gulpIf(args.production === true, pug({
-                pretty: false
-            })))
-            .pipe(gulpIf(args.production !== true, pug({
-                pretty: true
-            })))
+            .pipe(pug({
+                pretty: (args.production === true ? false : true)
+            }))
             .pipe(gulp.dest(config.views.process.dest))
             .pipe(plumber.stop())
     })
