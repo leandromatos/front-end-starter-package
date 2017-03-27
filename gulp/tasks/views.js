@@ -35,9 +35,16 @@ let Views = (config, args, log, error, success) => {
 
     gulp.task('views:build', false, () => {
         return gulp.src(config.views.build.src)
+            .pipe(plumber({
+                errorHandler: notifyError
+            }))
+            .pipe(log({
+                header: 'Build views:'
+            }))
             .pipe(inlineSource())
             .pipe(gulpIf(args.production === false, htmlBeautify()))
             .pipe(gulp.dest(config.views.process.dest))
+            .pipe(plumber.stop())
     })
 
     gulp.task('views', false, (callback) => {
